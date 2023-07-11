@@ -1,9 +1,41 @@
 version: "3.8"
+
 services:
+  admin:
+    build:
+      context: ./admin
+      dockerfile: Dockerfile
+    ports:
+      - "3005:3000"
+
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    ports:
+      - "9000:9000" # Thay đổi cổng này từ 3000 thành 9000
+    restart: always
+    environment:
+      - AWS_ACCESS_KEY_ID=AKIAV2ETM6QXP5EQATFC
+      - AWS_SECRET_ACCESS_KEY=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
+      - AWS_DEFAULT_REGION=ap-southeast-1
+      - AWS_END_POINT_DDB_LOCAL=http://dynamodb-local:8000/ # Thay đổi thành dynamodb-local
+      - AWS_END_POINT_DDB_CONSOLE=dynamodb.ap-southeast-1.amazonaws.com
+    depends_on:
+      - dynamodb-local
+
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    ports:
+      - "3006:3000"
+    volumes:
+      - ./client/src:/app/src
+
   dynamodb-local:
-    command: "-jar DynamoDBLocal.jar -sharedDb -dbPath ./data"
-    image: "amazon/dynamodb-local:latest"
-    container_name: dynamodb-local
+    image: amazon/dynamodb-local:latest
+    container_name: 8476da26272b
     ports:
       - "8000:8000"
     volumes:

@@ -1,4 +1,4 @@
-const ReadingListService = require(`./ReadingListService`);
+const ReadingListService = require('./ReadingListService');
 
 class ReadingListController {
 	async getAll(req, res) {
@@ -7,7 +7,7 @@ class ReadingListController {
 			res.json(data);
 		} catch (err) {
 			console.error(err);
-			res.status(500).json({err: 'Something went wrong'});
+			res.status(500).json({ err: 'Something went wrong' });
 		}
 	}
 
@@ -17,7 +17,7 @@ class ReadingListController {
 			res.status(200).json(data);
 		} catch (err) {
 			console.error(err);
-			res.status(500).json({err: 'Something went wrong'});
+			res.status(500).json({ err: 'Something went wrong' });
 		}
 	}
 
@@ -29,7 +29,7 @@ class ReadingListController {
 			}
 		} catch (err) {
 			console.error(err);
-			res.status(500).json({err: 'Something went wrong'});
+			res.status(500).json({ err: 'Something went wrong' });
 		}
 	}
 }

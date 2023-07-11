@@ -1,4 +1,4 @@
-const ReadingListRepository = require(`./ReadingListRepository`);
+const ReadingListRepository = require('./readingListRepository');
 
 class ReadingListService {
 	async getAll(pk) {
